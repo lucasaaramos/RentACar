@@ -13,10 +13,18 @@ import ooc.enums.Month;
  *
  * @author vanessa
  */
-public class Car implements CarInterface{
+public class Car implements CarInterface {
+
+    private Make make;
+    private double rate;
+    private int amount;
+    private Map<Month, boolean[]> availability;
 
     Car(String line) {
-        System.out.println(line);
+        String[] value = line.split(":");
+        this.make = Make.valueOf(value[0]);
+        this.rate = Double.valueOf(value[1]);
+        this.amount = Integer.parseInt(value[2]);
     }
 
     @Override
@@ -26,32 +34,32 @@ public class Car implements CarInterface{
 
     @Override
     public Make getMake() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return make;
     }
 
     @Override
     public void setMake(Make make) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.make = make;
     }
 
     @Override
     public double getRate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return rate;
     }
 
     @Override
     public void setRate(double rate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.rate = rate;
     }
 
     @Override
     public Map<Month, boolean[]> getAvailability() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return availability;
     }
 
     @Override
     public void setAvailability(Map<Month, boolean[]> availability) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.availability = availability;
     }
 
     @Override
@@ -68,5 +76,5 @@ public class Car implements CarInterface{
     public boolean book(Month month, int day) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

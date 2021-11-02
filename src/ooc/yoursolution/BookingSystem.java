@@ -21,16 +21,16 @@ public class BookingSystem implements BookingSystemInterface {
         String line = in.readLine();
         RentACarInterface rentACar = new RentACar();
         rentACar.setName(line);
-                
+
         //System.out.println(line);
         List<CarInterface> cars = new ArrayList<>();
-            while (in.ready()) {
-                line = in.readLine();
-                CarInterface car = new Car(line);
-                cars.add(car);
-            }
-        
-            rentACar.setCars(cars);
+        while (in.ready()) {
+            line = in.readLine();
+            CarInterface car = new Car(line);
+            cars.add(car);
+        }
+
+        rentACar.setCars(cars);
 
         return rentACar;
     }
