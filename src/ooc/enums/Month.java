@@ -34,35 +34,47 @@ public enum Month {
         return numberOfDays;
     }
 
-    public Month getNext() {
-        switch (this.name()) {
-            case ("JANUARY"):
-                return FEBRUARY;
-            case ("FEBRUARY"):
-                return MARCH;
-            case ("MARCH"):
-                return APRIL;
-            case ("APRIL"):
-                return MAY;
-            case ("MAY"):
-                return JUNE;
-            case ("JUNE"):
-                return JULY;
-            case ("JULY"):
-                return AUGUST;
-            case ("AUGUST"):
-                return SEPTEMBER;
-            case ("SEPTEMBER"):
-                return OCTOBER;
-            case ("OCTOBER"):
-                return NOVEMBER;
-            case ("NOVEMBER"):
-                return DECEMBER;
-            case ("DECEMBER"):
-                return JANUARY;
-            default:
-                return JANUARY;
-        }
+    
+    /*
+       
+       I was trying to consider here that the month can change to the other when 
+       booking a car, and we need to create other loop for if in case for example,
+       the custumer book the car on 30th of january, and book for 5 days, it would 
+       change the month and return the date of the beginning of february and not 25th of january
+
+    */
+    
+    //but I didn't have time to conclude this idea
+    
+//    public Month getNext() {
+//        switch (this.name()) {
+//            case ("JANUARY"):
+//                return FEBRUARY;
+//            case ("FEBRUARY"):
+//                return MARCH;
+//            case ("MARCH"):
+//                return APRIL;
+//            case ("APRIL"):
+//                return MAY;
+//            case ("MAY"):
+//                return JUNE;
+//            case ("JUNE"):
+//                return JULY;
+//            case ("JULY"):
+//                return AUGUST;
+//            case ("AUGUST"):
+//                return SEPTEMBER;
+//            case ("SEPTEMBER"):
+//                return OCTOBER;
+//            case ("OCTOBER"):
+//                return NOVEMBER;
+//            case ("NOVEMBER"):
+//                return DECEMBER;
+//            case ("DECEMBER"):
+//                return JANUARY;
+//            default:
+//                return JANUARY;
+//        }
 
     }
-}
+

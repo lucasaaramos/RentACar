@@ -6,7 +6,6 @@
 package ooc.yoursolution;
 
 import java.util.List;
-import java.util.Map;
 import ooc.enums.Make;
 import ooc.enums.Month;
 
@@ -16,65 +15,157 @@ import ooc.enums.Month;
  */
 public class RentACar implements RentACarInterface {
 
+    //Creating List to include cars
+    private List<Car> cars;
     private String name;
-    private List<CarInterface> cars;
 
-    @Override
-    public List<CarInterface> getCars() {
-        return this.cars;
+    /**
+     * this will return the List and String passed in 
+     * @param cars
+     * @param name 
+     */
+    public RentACar(List<Car> cars, String name) {
+        this.cars = cars;
+        this.name = name;
     }
 
+    /**
+     * Getting and setting cars 
+     * @return 
+     */
     @Override
-    public void setCars(List<CarInterface> cars) {
+    public List getCars() {
+        return cars;
+    }
+    
+    @Override
+    public void setCars(List cars) {
         this.cars = cars;
     }
 
+    /**
+     * Getting and setting name 
+     * @return 
+     */
     @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
     @Override
     public void setName(String name) {
         this.name = name;
     }
+    
 
+    /**
+     * Checking avaiability
+     * check the (Month month, int day, Make make, int lengthOfRent)
+     * @param month
+     * @param day
+     * @param make
+     * @param lengthOfRent
+     * @return 
+     */
     @Override
     public boolean checkAvailability(Month month, int day, Make make, int lengthOfRent) {
-        for (CarInterface car : getCars()) {
-            if (car.getMake().equals(make)) {
-                Map<Month, boolean[]> availability = car.getAvailability();
-                boolean[] days = availability.get(month);
-                if (day + lengthOfRent <= month.getNumberOfDays()) {
-                    return checkAvailability(days, day, day + lengthOfRent);
+        int currentDay, check;
 
-                } else {
-                    return checkAvailability(days, day, month.getNumberOfDays())
-                            && checkAvailability(availability.get(month.getNext()), 1, day + lengthOfRent - month.getNumberOfDays());
+        /**
+         * checking each car available in the list of cars
+         * declaring currentDay as the same as day in the method declared above
+         * creating a loop to check if car is available
+         * declaring check -> if check is equals to 0 -> return true
+         * if car in not available -> check is equals to 1 -> break -> return false at the end
+         * 
+         */
+        for (Car car : cars) {
+            if (car.getMake().equals(make)) {
+                check = 0;
+                currentDay = day;
+                for (int i = 0; i < lengthOfRent; i++) {
+                    if (!car.isAvailable(month, currentDay++)) {
+                        check = 1;
+                        break;
+                    }
+                }
+
+                if (check == 0) {
+                    return true;
                 }
             }
         }
+
         return false;
     }
 
-    private boolean checkAvailability(boolean[] days, int firstDay, int lastDay) {
-        boolean available = true;
-        for (int i = firstDay - 1; i < lastDay; i++) {
-            available = available && days[i];
-        }
-        return available;
-    }
-
+    /**
+     * passing the following parameters:
+     * @param month
+     * @param day
+     * @param make
+     * @param lengthOfRent
+     * 
+     * Using the same structure from the method above
+     * in this case, if check is equals to 0 -> return getId from the method in the class Car
+     * then return -1
+     * 
+     * @return 
+     */
     @Override
     public int getCarAvailable(Month month, int day, Make make, int lengthOfRent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int currentDay, check;
+
+        for (Car car : cars) {
+            if (car.getMake().equals(make)) {
+                check = 0;
+                currentDay = day;
+                for (int i = 0; i < lengthOfRent; i++) {
+                    if (!car.isAvailable(month, currentDay++)) {
+                        check = 1;
+                        break;
+                    }
+                }
+
+                if (check == 0) {
+                    return car.getId();
+                }
+            }
+        }
+
+        return -1;
     }
 
     @Override
     public boolean bookCar(Month month, int day, Make make, int lengthOfRent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        /**
+         * check avaiability (month, day, make and lengthOfRent)
+         * if not available -> return false
+         * otherwise set carId to the info
+         * check if the ID of the car in the class car is the same as carId setup here
+         * check if the make in the class Car is the same as make in the method
+         * @return
+         */
+        if (!checkAvailability(month, day, make, lengthOfRent)) {
+            return false;
+        }
+
+        int carId = getCarAvailable(month, day, make, lengthOfRent);
+
+        for (Car car : cars) {
+            if (car.getId() == carId && car.getMake() == make) {
+                int currentDay = day;
+                for (int i = 0; i < lengthOfRent; i++) {
+                    car.book(month, currentDay++);
+                }
+            }
+        }
+
+        return true;
     }
 
+    //setting the number os cars using size()
     @Override
     public int getNumberOfCars() {
         return cars.size();
@@ -84,5 +175,4 @@ public class RentACar implements RentACarInterface {
     public void getName(RentACar car) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }
