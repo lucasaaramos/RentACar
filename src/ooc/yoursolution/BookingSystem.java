@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import ooc.enums.Make;
 
 /**
  *
@@ -18,28 +19,47 @@ public class BookingSystem implements BookingSystemInterface {
 
     @Override
     public RentACarInterface setupRentACar(BufferedReader in) throws IOException {
-        //reading the first line
-        String line = in.readLine();
-        RentACarInterface rentACar = new RentACar();
-        rentACar.setName(line);
 
-        //System.out.println(line);
-        //creating arrayList to include cars
-        List<CarInterface> cars = new ArrayList<>();
+        /**
+         * Declaring variables
+         * Creating ArrayList to store cars
+         * Read the line
+         */ 
+        String line, name;
+        List<Car> cars = new ArrayList<>();
+        name = in.readLine();
         
-        //loop to ready the lines of the file
-        while (in.ready()) {
-            line = in.readLine();
-            //creating a car with the line information
-            CarInterface car = new Car(line);
-            //adding the car to the class
-            cars.add(car);
+        /**
+         * while loop to check the file and return something
+         * split the line to separate variables
+         * remember that price is Double
+         * remember that numberCars is int 
+         */
+        while ((line = in.readLine()) != null) {
+            String value[] = line.split(":");
+
+            /**
+             * declaring [0] as make -> the first info of the text will be car
+             * declaring [1] as rate -> the second info of the text will be car
+             * declaring [2] as make -> the third info of the text will be car
+             */
+            Make make = Make.valueOf(value[0]);
+            double rate = Double.parseDouble(value[1]);
+            int numCars = Integer.parseInt(value[2]);
+
+            /**
+             * creating cars 
+             * declaring car as number, name of the car(make) and rate
+             * adding car to the class Car
+             */
+            for (int i = 0; i < numCars; i++) {
+                Car car = new Car(i, make, rate);
+                cars.add(car);
+            }
         }
 
-        //setting the car for rent    
-        rentACar.setCars(cars);
-
-        return rentACar;
+        //declaring and returning
+        RentACarInterface rentACarInterface = new RentACar(cars, name);
+        return rentACarInterface;
     }
-
 }

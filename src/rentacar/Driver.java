@@ -16,11 +16,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-// INCLUDE HERE THE LINK TO THE GIT REPOSITORY AS A COMMENT!!!!
+// link to GitHub -> https://github.com/lucasaaramos/RentACar.git
 
 
-// INCLUDE HERE THE FULL NAME AND STUDENT NUMBER OF BOTH TEAM MEMBERS 
-// AS A COMMENT!!!!
+/**
+ * LUCAS ALBUQUERQUE RAMOS 
+ * STUDENT NUMBER: 2020343
+ * 
+ * VANESSA TATIANE ALVES CARVALHO
+ * STUDENT NUMBER: 2020328
+*/ 
 
 
 
@@ -35,7 +40,6 @@ public class Driver {
      * 
      * @param args the command line arguments
      * 
-     * link to GitHub -> https://github.com/lucasaaramos/RentACar.git
      * 
      */
     public static void main(String[] args) throws IOException {
@@ -48,18 +52,20 @@ public class Driver {
         RentACarInterface rentACar = bookingSystem.setupRentACar(in);
 
         // Get the name of the car rental
-        System.out.println(rentACar.getName());
+        System.out.println("The name of the Car Rental is: " + rentACar.getName());
         
         // Print the number of cars in the rent-a-car
-        System.out.println(rentACar.getNumberOfCars());  
+        System.out.println("\nQuantity of cars: " + rentACar.getNumberOfCars());  
         
         // Check if there is a BMW car available for 5 days from the 1st
         // of January
-        System.out.println(rentACar.checkAvailability(Month.JANUARY, 1, Make.BMW, 5)); 
+        System.out.println("\nChecking BMW Avaiability: " + rentACar.checkAvailability(Month.JANUARY, 1, Make.BMW, 5)); 
         
         // Get the id of the car available
-        System.out.println(rentACar.getCarAvailable(Month.JANUARY, 1, Make.BMW, 5));
+        System.out.println("\nChecking BMW ID: " +rentACar.getCarAvailable(Month.JANUARY, 1, Make.BMW, 5));
         
+        
+        System.out.println("\nChecking Avaiability for dates: ");
         // Try some bookings
         System.out.println(rentACar.bookCar(Month.JANUARY, 1, Make.BMW, 5));
         System.out.println(rentACar.bookCar(Month.JANUARY, 1, Make.BMW, 5));
