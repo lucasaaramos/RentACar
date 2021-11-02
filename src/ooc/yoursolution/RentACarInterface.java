@@ -84,4 +84,6 @@ public interface RentACarInterface {
      * @return number of cars
      */
     public int getNumberOfCars();    
+
+    public void getName(RentACar car);
 }

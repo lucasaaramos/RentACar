@@ -17,10 +17,31 @@ public class BookingSystem implements BookingSystemInterface {
     @Override
     public RentACarInterface setupRentACar(BufferedReader in) throws IOException {
         
-    
+        //FeedInterface feed = new Feed();
         
         
-    
+        //review....this is wrong!
+        
+        
+        RentACarInterface rent = new RentACar();
+        
+        String title = in.readLine();
+        String nameCar = "";
+                
+        while(nameCar != null) {
+            
+            nameCar = in.readLine();
+            
+            //FeedItem item = new FeedItem(title, content);
+            //feed.addItem(item);
+            
+            RentACar car = new RentACar(nameCar);
+            rent.getName(car);
+            
+        }        
+        
+        return rent;
+
     }
     
 }
