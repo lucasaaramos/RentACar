@@ -7,41 +7,32 @@ package ooc.yoursolution;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author lucas
+ * @author vanessa
  */
 public class BookingSystem implements BookingSystemInterface {
 
     @Override
     public RentACarInterface setupRentACar(BufferedReader in) throws IOException {
-        
-        //FeedInterface feed = new Feed();
-        
-        
-        //review....this is wrong!
-        
-        
-        RentACarInterface rent = new RentACar();
-        
-        String title = in.readLine();
-        String nameCar = "";
+        String line = in.readLine();
+        RentACarInterface rentACar = new RentACar();
+        rentACar.setName(line);
                 
-        while(nameCar != null) {
-            
-            nameCar = in.readLine();
-            
-            //FeedItem item = new FeedItem(title, content);
-            //feed.addItem(item);
-            
-            RentACar car = new RentACar(nameCar);
-            rent.getName(car);
-            
-        }        
+        //System.out.println(line);
+        List<CarInterface> cars = new ArrayList<>();
+            while (in.ready()) {
+                line = in.readLine();
+                CarInterface car = new Car(line);
+                cars.add(car);
+            }
         
-        return rent;
+            rentACar.setCars(cars);
 
+        return rentACar;
     }
-    
+
 }

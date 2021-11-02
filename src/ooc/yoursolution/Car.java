@@ -11,9 +11,13 @@ import ooc.enums.Month;
 
 /**
  *
- * @author lucas
+ * @author vanessa
  */
-public class Car implements CarInterface {
+public class Car implements CarInterface{
+
+    Car(String line) {
+        System.out.println(line);
+    }
 
     @Override
     public Map<Month, boolean[]> createAvailability() {
@@ -64,6 +68,5 @@ public class Car implements CarInterface {
     public boolean book(Month month, int day) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
     
 }

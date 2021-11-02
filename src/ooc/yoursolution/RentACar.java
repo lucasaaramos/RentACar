@@ -11,17 +11,9 @@ import ooc.enums.Month;
 
 /**
  *
- * @author lucas
+ * @author vanessa
  */
-public class RentACar implements RentACarInterface {
-
-    RentACar(String nameCar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    RentACar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public class RentACar implements RentACarInterface{
 
     @Override
     public List<CarInterface> getCars() {
@@ -60,11 +52,6 @@ public class RentACar implements RentACarInterface {
 
     @Override
     public int getNumberOfCars() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void getName(RentACar car) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
