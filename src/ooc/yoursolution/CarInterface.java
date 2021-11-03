@@ -81,10 +81,14 @@ public interface CarInterface {
      * Month is an Emum, day is an int within the limits of the number of days
      * in a given month
      * 
+     * @param id
      * @param month Month being checked
      * @param day date being checked
      * @return  true or false if it is available or not
      */
+    
+    public void setId(int id);
+    
     public boolean isAvailable(Month month, int day);
     
     /**

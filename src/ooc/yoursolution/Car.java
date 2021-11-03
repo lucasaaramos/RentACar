@@ -107,6 +107,13 @@ public class Car implements CarInterface {
         return id;
     }
     
+    @Override
+    public void setId(int id) {
+       this.id = id;
+    }
+    
+    
+    
     /**
      * passing the parameters and return availability if it is true
      * day -1 because needs to follow the array that starts at 0
