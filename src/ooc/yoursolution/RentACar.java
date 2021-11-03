@@ -173,6 +173,6 @@ public class RentACar implements RentACarInterface {
 
     @Override
     public void getName(RentACar car) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.cars = (List<Car>) car;
     }
 }
